@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Tableau de bord - Ventes</title>
+  <title>Tableau de bord</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -11,37 +12,34 @@
   </header>
 
   <main>
-    <!-- Cartes KPI -->
-    <section class="kpi-section">
+    <section class="kpis">
       <div class="kpi-card">
-        <h2 id="totalVentes">0 FCFA</h2>
+        <h2 id="totalOrders">0</h2>
+        <p>Commandes reçues</p>
+      </div>
+      <div class="kpi-card">
+        <h2 id="totalSales">0 FCFA</h2>
         <p>Total des ventes</p>
       </div>
-      <div class="kpi-card">
-        <h2 id="totalCommandes">0</h2>
-        <p>Total des commandes</p>
-      </div>
     </section>
 
-    <!-- Filtres de période -->
     <section class="filters">
-      <button onclick="applyFilter('today')">Aujourd'hui</button>
-      <button onclick="applyFilter('3days')">3 derniers jours</button>
-      <button onclick="applyFilter('7days')">7 derniers jours</button>
-      <button onclick="applyFilter('30days')">30 derniers jours</button>
+      <label for="startDate">Du :</label>
       <input type="date" id="startDate">
+      <label for="endDate">Au :</label>
       <input type="date" id="endDate">
-      <button onclick="applyFilter('custom')">Appliquer</button>
+      <button onclick="applyFilter()">Appliquer</button>
     </section>
 
-    <!-- Graphe -->
-    <section class="chart-section">
+    <section class="chart">
       <canvas id="salesChart"></canvas>
+    </section>
+
+    <section class="nav">
+      <button onclick="window.location.href='commandes.html'">📦 Voir les commandes</button>
     </section>
   </main>
 
-  <!-- Librairies -->
-  <script src="chart.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
