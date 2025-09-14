@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tableau de bord - Ventes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Tableau de bord des ventes</h1>
+  </header>
+
+  <main>
+    <!-- Cartes KPI -->
+    <section class="kpi-section">
+      <div class="kpi-card">
+        <h2 id="totalVentes">0 FCFA</h2>
+        <p>Total des ventes</p>
+      </div>
+      <div class="kpi-card">
+        <h2 id="totalCommandes">0</h2>
+        <p>Total des commandes</p>
+      </div>
+    </section>
+
+    <!-- Filtres de période -->
+    <section class="filters">
+      <button onclick="applyFilter('today')">Aujourd'hui</button>
+      <button onclick="applyFilter('3days')">3 derniers jours</button>
+      <button onclick="applyFilter('7days')">7 derniers jours</button>
+      <button onclick="applyFilter('30days')">30 derniers jours</button>
+      <input type="date" id="startDate">
+      <input type="date" id="endDate">
+      <button onclick="applyFilter('custom')">Appliquer</button>
+    </section>
+
+    <!-- Graphe -->
+    <section class="chart-section">
+      <canvas id="salesChart"></canvas>
+    </section>
+  </main>
+
+  <!-- Librairies -->
+  <script src="chart.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
