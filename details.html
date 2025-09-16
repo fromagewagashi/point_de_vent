@@ -2,22 +2,29 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Détails commande</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Détails Commande</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Détails de la commande</h1>
-  </header>
+  <div class="dashboard">
+    <div class="top-bar">
+      <h2>Détails de la commande</h2>
+      <button class="report-btn" onclick="window.location.href='commandes.html'">⬅ Retour</button>
+    </div>
 
-  <main>
-    <section id="orderDetails" class="order-details">
-      <!-- Les infos du client seront injectées ici -->
-    </section>
-  </main>
+    <div id="order-details" class="order-details">
+      <p>Chargement des détails...</p>
+    </div>
+  </div>
 
-  <script src="details.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get("id"); // index du client dans la feuille
+      const data = await fetchSheetData();
+      renderOrderDetails(data, id);
+    });
+  </script>
 </body>
 </html>
-
-
