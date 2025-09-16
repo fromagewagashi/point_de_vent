@@ -2,43 +2,59 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Tableau de bord</title>
+  <title>Dashboard Ventes</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="chart.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Tableau de bord des ventes</h1>
-  </header>
+  <div class="dashboard">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <select id="quickFilter" class="select-date" onchange="applyQuickFilter()">
+        <option value="30">30 derniers jours</option>
+        <option value="7">7 derniers jours</option>
+        <option value="3">3 derniers jours</option>
+        <option value="1">Aujourd'hui</option>
+      </select>
+      <button class="report-btn" onclick="window.location.href='commandes.html'">📦 Commandes</button>
+    </div>
 
-  <main>
-    <section class="kpis">
-      <div class="kpi-card">
-        <h2 id="totalOrders">0</h2>
-        <p>Commandes reçues</p>
+    <!-- Loader -->
+    <div id="loader" class="loader hidden">Chargement...</div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="row">
+        <div>Ventes totales</div>
+        <div class="sales" id="totalSales">0 CFA</div>
       </div>
-      <div class="kpi-card">
-        <h2 id="totalSales">0 FCFA</h2>
-        <p>Total des ventes</p>
+      <div class="row">
+        <div>Total des commandes</div>
+        <div id="totalOrders">0</div>
       </div>
-    </section>
+      <div class="row">
+        <div>Taux de conversion</div>
+        <div id="conversionRate">0%</div>
+      </div>
+    </div>
 
-    <section class="filters">
-      <label for="startDate">Du :</label>
-      <input type="date" id="startDate">
-      <label for="endDate">Au :</label>
-      <input type="date" id="endDate">
-      <button onclick="applyFilter()">Appliquer</button>
-    </section>
+    <!-- Chart -->
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
 
-    <section class="chart">
-      <canvas id="salesChart"></canvas>
-    </section>
-
-    <section class="nav">
-      <button onclick="window.location.href='commandes.html'">📦 Voir les commandes</button>
-    </section>
-  </main>
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card">
+        <strong id="pendingOrders">0</strong>
+        Commandes à traiter
+      </div>
+      <div class="card">
+        <strong id="pendingPayments">0</strong>
+        Paiements à saisir
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
