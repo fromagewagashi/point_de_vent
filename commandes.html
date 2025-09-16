@@ -2,20 +2,29 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Commandes reçues</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Commandes</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Commandes reçues</h1>
-  </header>
+  <div class="dashboard">
+    <div class="top-bar">
+      <h2>Commandes reçues</h2>
+      <button class="report-btn" onclick="window.location.href='index.html'">⬅ Retour</button>
+    </div>
 
-  <main>
-    <section id="ordersList" class="orders-list">
-      <!-- Les commandes seront injectées ici par commandes.js -->
-    </section>
-  </main>
+    <!-- Liste des commandes -->
+    <div id="orders-list" class="orders-list">
+      <p>Chargement des commandes...</p>
+    </div>
+  </div>
 
-  <script src="commandes.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Charger et afficher les commandes
+    document.addEventListener("DOMContentLoaded", async () => {
+      const data = await fetchSheetData(); // depuis scripts.js
+      renderOrdersList(data);
+    });
+  </script>
 </body>
 </html>
